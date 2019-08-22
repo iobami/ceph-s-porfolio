@@ -9,6 +9,7 @@
 export default {
   name: 'dashboard',
   mounted() {
+    this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
   },
   methods: {
   },

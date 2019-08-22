@@ -5,34 +5,44 @@
       <span>Qui</span>
     </div>
       <hr>
-    <div class="nav-button">
-        <router-link to="/dashboard">
-            <button class="active btn badge-info">
-                <span>
-                    <i class="mdi mdi-view-dashboard"></i>
-                </span>
-                <span>Dashboard</span>
-            </button>
-        </router-link>
-        <router-link to="/file-upload">
-            <button class="btn badge-info">
-                <span><i class="fa fa-address-card-o"></i></span>
-                <span>Upload Questions</span>
-            </button>
-        </router-link>
-        <router-link to="/about">
-            <button class="btn badge-info">
-                <span><i class="fa fa-address-card-o"></i></span>
-                <span>Clients</span>
-            </button>
-        </router-link>
-        <router-link to="/about">
-            <button class="btn badge-info">
-                <span><i class="fa fa-address-card-o"></i></span>
-                <span>Features</span>
-            </button>
-        </router-link>
-    </div>
+    <!--<div class="nav-button">-->
+        <!--<router-link to="/dashboard">-->
+            <!--<button class="btn badge-info">-->
+                <!--<span>-->
+                    <!--<i class="mdi mdi-view-dashboard"></i>-->
+                <!--</span>-->
+                <!--<span>Dashboard</span>-->
+            <!--</button>-->
+        <!--</router-link>-->
+        <!--<router-link to="/file-upload">-->
+            <!--<button class="btn">-->
+                <!--<span><i class="fa fa-address-card-o"></i></span>-->
+                <!--<span>Upload Questions</span>-->
+            <!--</button>-->
+        <!--</router-link>-->
+        <!--<router-link to="/about">-->
+            <!--<button class="btn">-->
+                <!--<span><i class="fa fa-address-card-o"></i></span>-->
+                <!--<span>Clients</span>-->
+            <!--</button>-->
+        <!--</router-link>-->
+        <!--<router-link to="/about">-->
+            <!--<button class="btn">-->
+                <!--<span><i class="fa fa-address-card-o"></i></span>-->
+                <!--<span>Features</span>-->
+            <!--</button>-->
+        <!--</router-link>-->
+    <!--</div>-->
+      <div class="nav-button">
+          <div v-for="(routes, routesKey) in navRoute" :key="routesKey">
+              <router-link :to="routes.route">
+                  <button class="btn" :id="`nav-button_${routesKey}`">
+                      <span><i class="fa fa-address-card-o"></i></span>
+                      <span>{{ routes.name }}</span>
+                  </button>
+              </router-link>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -41,11 +51,31 @@ export default {
   name: 'SideNavigation',
   mounted() {
     /* eslint-env jquery */
-    // $('.nav-button').click(function () {
-    //   // $('.nav-button button').removeClass('active');
-    //   // $(".tab").addClass("active"); // instead of this do the below
-    //   $(this).addClass('active');
-    // });
+    $('#nav-button_0').addClass('badge-info');
+    $('.nav-button button').click((e) => {
+      $('.nav-button button').removeClass('badge-info');
+      // $(".tab").addClass("active"); // instead of this do the below
+      const currentId = e.currentTarget.id.split('_');
+      $(`#nav-button_${currentId[1]}`).addClass('badge-info');
+    });
+  },
+  data() {
+    return {
+      navRoute: [
+        {
+          name: 'Dashboard', route: '/dashboard',
+        },
+        {
+          name: 'Upload Questions', route: '/file-upload',
+        },
+        {
+          name: 'Clients', route: 'clients',
+        },
+        {
+          name: 'Features', route: 'features',
+        },
+      ],
+    };
   },
   methods: {
   },
@@ -84,6 +114,9 @@ export default {
     z-index: 1;
     top: 0;
     left: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))
+      ,url('../../src/assets/images/background-1.jpg');
+      background-size: cover;
     background-color: #333333;
     color: #f3f3f3;
     overflow-x: hidden;
@@ -105,16 +138,17 @@ export default {
     display: block;
     transition: 0.3s;
   }
-    .nav-button button:hover {
-        background-color: #606060;
-        text-underline: none;
-        text-decoration: none;
-        opacity: 0.9;
-    }
-    .nav-button button:not(.active) {
+    .nav-button button:not(.badge-info) {
         /*color: #f3f3f3;*/
         background-color: Transparent;
         opacity: 0.9;
+    }
+    .nav-button button:not(.badge-info):hover {
+        /*color: #f3f3f3;*/
+        background-color: #606060;
+        text-underline: none;
+        text-decoration: none;
+        opacity: 0.8;
     }
     .nav-button button span {
         color: #f3f3f3;

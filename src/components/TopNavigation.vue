@@ -1,6 +1,6 @@
 <template>
     <div class="top-navbar">
-        <span>{{ navName }}</span>
+        <span>{{ hideHeader }}</span>
         <span style="float: right">&#9776;</span>
         <span style="float: right">&#9776;</span>
     </div>
@@ -9,10 +9,11 @@
 <script>
 export default {
   mounted() {
+    // this.navName = this.$store.commit('setHideHeader', '');
   },
   data() {
     return {
-      navName: 'Upload Questions',
+      navName: '',
     };
   },
   methods: {

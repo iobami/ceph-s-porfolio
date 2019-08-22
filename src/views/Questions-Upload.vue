@@ -39,8 +39,7 @@
 export default {
   name: 'upload',
   mounted() {
-    // this.$store.commit('setShowNav', true);
-    // console.log(this.showNav);
+    this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
   },
   data() {
     return {

@@ -18,11 +18,17 @@ export default new Router({
           path: '/dashboard',
           name: 'dashboard',
           component: Dashboard,
+          meta: {
+            breadcrumb: 'Dashboard',
+          },
         },
         {
           path: '/file-upload',
           name: 'upload',
           component: Upload,
+          meta: {
+            breadcrumb: 'Upload Questions',
+          },
         },
       ],
     },
