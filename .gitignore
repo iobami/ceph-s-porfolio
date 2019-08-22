@@ -1,5 +1,7 @@
 .DS_Store
 node_modules
+MaterialDesign
+fontawesome-5.3.1
 /dist
 
 # local env files
