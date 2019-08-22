@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <SideNavigation/>
     <TopNavigation/>
     <router-view
     id="main"
     />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -13,12 +13,14 @@ import SideNavigation from './components/SideNavigation.vue';
 import TopNavigation from './components/TopNavigation.vue';
 
 export default {
+  name: 'App',
   components: {
     SideNavigation,
     TopNavigation,
   },
 };
 </script>
+
 
 <style>
 #app {

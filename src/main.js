@@ -8,6 +8,7 @@ import 'jquery/src/jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/MaterialDesign/css/materialdesignicons.min.css';
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
 Vue.mixin(mixins);
@@ -15,5 +16,6 @@ Vue.mixin(mixins);
 new Vue({
   router,
   store,
+  vuetify,
   render: h => h(App),
 }).$mount('#app');
