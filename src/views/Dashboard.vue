@@ -17,10 +17,10 @@
               <div>
                 <marquee style="" scrollamount="5" scrolldelay="5" direction="left"
                          onmouseover="this.stop()" onmouseout="this.start()">
-                  <span>MAth</span>&nbsp;
-                  <span>eng</span>
-                  <span>MAth</span>
-                  <span>eng</span>
+                  <span v-for="(course, courseKey) in courses" :key="courseKey">
+                    {{ course.title }}&nbsp;
+                    <span v-if="courseKey < courses.length - 1">|</span> &nbsp;
+                  </span>
                 </marquee>
               </div>
             </div>
@@ -38,7 +38,8 @@
         <hr>
         <div class="dashboard-card-body">
           <span class="top-span">
-            Number of questions currently available on <b>{{ currentCourse }}</b>.
+            Number of questions currently available in
+            <b>{{ currentCourse }} ({{ currentCourseCode }})</b>.
           </span>
         </div>
       </div>
@@ -48,12 +49,15 @@
 
 <script>
 import axios from 'axios';
+import questions from './testData';
 
 export default {
   name: 'dashboard',
   mounted() {
     this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
-    this.getQuestions();
+    // this.getQuestions();
+    this.getCourseIndex();
+    this.questionTimer();
   },
   data() {
     return {
@@ -65,8 +69,12 @@ export default {
         { code: 'eco472', title: 'Modern Value Theory' },
         { code: 'eco471', title: 'Public Sector Economics' },
       ],
-      availableQuestions: '50',
-      currentCourse: 'Math',
+      availableQuestions: 0,
+      currentCourse: '',
+      currentCourseCode: '',
+      courseIndex: 0,
+      questionsArray: questions,
+      questionCount: 0,
     };
   },
   methods: {
@@ -83,6 +91,28 @@ export default {
       }).catch((err) => {
         console.log(err);
       });
+    },
+    getQuestionNumber() {
+      this.questionCount = 0;
+      this.questionsArray.forEach((questionObject) => {
+        if (this.courses[this.courseIndex].code === questionObject.course.code) {
+          this.questionCount += 1;
+        }
+        this.currentCourse = this.courses[this.courseIndex].title;
+        this.currentCourseCode = this.courses[this.courseIndex].code.toUpperCase();
+      });
+      this.availableQuestions = this.questionCount;
+    },
+    getCourseIndex() {
+      this.getQuestionNumber();
+      this.courseIndex += 1;
+      // console.log('counting', this.courseIndex);
+      if (this.courseIndex === this.courses.length) {
+        this.courseIndex = 0;
+      }
+    },
+    questionTimer() {
+      setInterval(this.getCourseIndex, 5000);
     },
   },
 };
