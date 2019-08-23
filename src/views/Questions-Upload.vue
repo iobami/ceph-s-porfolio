@@ -30,6 +30,7 @@
       </div>
       <div style="clear: both; text-align: center">
         <button class="btn badge-info">Upload</button>
+        <!--<v-btn color="success">Success</v-btn>-->
       </div>
     </div>
   </div>
