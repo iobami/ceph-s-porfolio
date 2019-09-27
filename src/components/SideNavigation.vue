@@ -5,38 +5,10 @@
       <span>Qui</span>
     </div>
       <hr>
-    <!--<div class="nav-button">-->
-        <!--<router-link to="/dashboard">-->
-            <!--<button class="btn badge-info">-->
-                <!--<span>-->
-                    <!--<i class="mdi mdi-view-dashboard"></i>-->
-                <!--</span>-->
-                <!--<span>Dashboard</span>-->
-            <!--</button>-->
-        <!--</router-link>-->
-        <!--<router-link to="/file-upload">-->
-            <!--<button class="btn">-->
-                <!--<span><i class="fa fa-address-card-o"></i></span>-->
-                <!--<span>Upload Questions</span>-->
-            <!--</button>-->
-        <!--</router-link>-->
-        <!--<router-link to="/about">-->
-            <!--<button class="btn">-->
-                <!--<span><i class="fa fa-address-card-o"></i></span>-->
-                <!--<span>Clients</span>-->
-            <!--</button>-->
-        <!--</router-link>-->
-        <!--<router-link to="/about">-->
-            <!--<button class="btn">-->
-                <!--<span><i class="fa fa-address-card-o"></i></span>-->
-                <!--<span>Features</span>-->
-            <!--</button>-->
-        <!--</router-link>-->
-    <!--</div>-->
       <div class="nav-button">
           <div v-for="(routes, routesKey) in navRoute" :key="routesKey">
               <router-link :to="routes.route">
-                  <button class="btn" :id="`nav-button_${routesKey}`">
+                  <button v-ripple class="btn" :id="`nav-button_${routesKey}`">
                       <span><i class="fa fa-address-card-o"></i></span>
                       <span>{{ routes.name }}</span>
                   </button>
@@ -69,7 +41,7 @@ export default {
           name: 'Upload Questions', route: '/file-upload',
         },
         {
-          name: 'Clients', route: 'clients',
+          name: 'Create Questions', route: 'create-question',
         },
         {
           name: 'Features', route: 'features',

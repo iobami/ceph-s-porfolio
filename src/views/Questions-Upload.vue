@@ -9,11 +9,14 @@
       <div class="upload-card-body">
         <div style="float: left">
           <h4>Select File</h4>
+          <!--<div>-->
+            <!--<label for="file-upload" class="file-upload" v-if="!uploadingImage">-->
+              <!--Choose File</label>&nbsp;&nbsp;{{ fileName }}-->
+            <!--<input @change="readURL" ref="myFiles" id="file-upload"-->
+                   <!--type="file" name="myFile" style="display: none">-->
+          <!--</div>-->
           <div>
-            <label for="file-upload" class="file-upload" v-if="!uploadingImage">
-              Choose File</label>&nbsp;&nbsp;{{ fileName }}
-            <input @change="readURL" ref="myFiles" id="file-upload"
-                   type="file" name="myFile" style="display: none">
+            <v-file-input label="File input"></v-file-input>
           </div>
         </div>
         <div style="float: right">
