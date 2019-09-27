@@ -8,7 +8,7 @@
       <div class="nav-button">
           <div v-for="(routes, routesKey) in navRoute" :key="routesKey">
               <router-link :to="routes.route">
-                  <button class="btn" :id="`nav-button_${routesKey}`">
+                  <button v-ripple class="btn" :id="`nav-button_${routesKey}`">
                       <span><i class="fa fa-address-card-o"></i></span>
                       <span>{{ routes.name }}</span>
                   </button>
