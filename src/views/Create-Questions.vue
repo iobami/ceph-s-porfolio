@@ -137,4 +137,36 @@ export default {
         font-weight: bold;
         cursor: pointer;
     }
+    @media only screen and (min-width: 606px) and (max-width: 991px) {
+        .new-question-card {
+            min-height: 50vh;
+            width: 85%;
+            margin: -69px auto;
+        }
+        .new-question-card-offset {
+            min-height: 13vh;
+            max-height: 13vh;
+            background-color: #3C45B0;
+            width: 83%;
+            margin: 0 auto;
+        }
+    }
+    @media only screen and (min-width: 204px) and (max-width: 606px) {
+        .new-question-card {
+            min-height: 50vh;
+            width: 92%;
+            margin: -69px auto;
+        }
+        .new-question-card-offset {
+            min-height: 13vh;
+            max-height: 13vh;
+            background-color: #3C45B0;
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
+    @media only screen and (max-width: 482px) {
+    }
+    @media only screen and (max-width: 384px) {
+    }
 </style>

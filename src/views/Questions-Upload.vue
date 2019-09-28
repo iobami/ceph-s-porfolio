@@ -31,8 +31,8 @@
           </select>
         </div>
       </div>
-      <div style="clear: both; text-align: center">
-        <button class="btn badge-info">Upload</button>
+      <div style="clear: both; text-align: center; margin: 4px">
+        <button v-ripple class="btn badge-info" style="margin: 20px">Upload</button>
         <!--<v-btn color="success">Success</v-btn>-->
       </div>
     </div>
@@ -98,6 +98,26 @@ export default {
     padding: 14px;
     box-shadow: 0 2px 8px 2px #B8B8B8;
   }
+  /*.container-login100 {*/
+      /*width: 100%;*/
+      /*min-height: 100vh;*/
+      /*display: -webkit-box;*/
+      /*display: -webkit-flex;*/
+      /*display: -moz-box;*/
+      /*display: -ms-flexbox;*/
+      /*display: flex;*/
+      /*flex-wrap: wrap;*/
+      /*justify-content: center;*/
+      /*align-items: center;*/
+      /*padding: 15px;*/
+      /*background: #0250c5;*/
+      /*background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);*/
+      /*background: -o-linear-gradient(bottom, #0250c5, #d43f8d);*/
+      /*background: -moz-linear-gradient(bottom, #0250c5, #d43f8d);*/
+      /*background: linear-gradient(bottom, #0250c5, #d43f8d);*/
+      /*position: relative;*/
+      /*z-index: 1;*/
+  /*}*/
   .upload-card-offset span {
     display: block;
     color: #DCDCDC;
@@ -135,5 +155,85 @@ export default {
     transition-duration: 250ms;
     transition-timing-function: ease-in;
     box-shadow: 0 3px 8px 2px #B8B8B8;
+  }
+  @media only screen and (min-width: 606px) and (max-width: 991px) {
+    .upload-card {
+      min-height: 50vh;
+      max-height: 50vh;
+      background-color: white;
+      width: 85%;
+      margin: -110px auto;
+      border-radius: 5px;
+      z-index: 0;
+      position: relative;
+      box-shadow: 0 2px 8px 2px #B8B8B8;
+      padding: 72px 22px 0 22px;
+    }
+    .upload-card-offset {
+      min-height: 13vh;
+      max-height: 13vh;
+      background-color: #3C45B0;
+      /*background-color: rgba(0,0,0,.87);*/
+      width: 83%;
+      margin: 40px auto;
+      border-radius: 5px;
+      z-index: 1;
+      position: relative;
+      padding: 14px;
+      box-shadow: 0 2px 8px 2px #B8B8B8;
+    }
+    .upload-card-body {
+      width: 80%;
+      margin: 52px auto;
+    }
+  }
+  @media only screen and (min-width: 204px) and (max-width: 606px) {
+    .upload-card {
+      min-height: 50vh;
+      max-height: 50vh;
+      background-color: white;
+      width: 92%;
+      margin: -69px auto;
+      border-radius: 5px;
+      z-index: 0;
+      position: relative;
+      box-shadow: 0 2px 8px 2px #B8B8B8;
+      padding: 72px 22px 0 22px;
+    }
+    .upload-card-offset {
+      min-height: 13vh;
+      max-height: 13vh;
+      background-color: #3C45B0;
+      /*background-color: rgba(0,0,0,.87);*/
+      width: 90%;
+      margin: 0 auto;
+      border-radius: 5px;
+      z-index: 1;
+      position: relative;
+      padding: 14px;
+      box-shadow: 0 2px 8px 2px #B8B8B8;
+    }
+    .upload-card-body {
+      width: 80%;
+      margin: 52px auto;
+    }
+  }
+  @media only screen and (max-width: 482px) {
+    .upload-card-body {
+      width: 95%;
+      margin: 52px auto;
+    }
+    .upload-card h4 {
+      font-size: 21px;
+    }
+  }
+  @media only screen and (max-width: 348px) {
+    .upload-card-body {
+      width: 99%;
+      margin: 52px auto;
+    }
+    .upload-card h4 {
+      font-size: 18px;
+    }
   }
 </style>

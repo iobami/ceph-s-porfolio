@@ -1,8 +1,8 @@
 <template>
     <div class="top-navbar">
-        <span>{{ hideHeader }}</span>
-        <span style="float: right">&#9776;</span>
-        <span style="float: right">&#9776;</span>
+        <span class="nav-name">{{ hideHeader }}</span>
+        <span class="showSideNav">&#9776;</span>
+        <span class="mdi mdi-view-dashboard qui-dashboard"></span>
     </div>
 </template>
 
@@ -23,9 +23,53 @@ export default {
 
 <style scoped>
     .top-navbar {
-        margin-left: 250px;
-        padding: 22px;
+        /*margin-left: 250px;*/
+        padding: 18px;
         background-color: #F0F0F0;
         color: #606060;
+    }
+    .nav-name {
+        font-size: 24px;
+    }
+    .showSideNav {
+        display: none;
+        float: right;
+        font-size: 24px;
+    }
+    .qui-dashboard {
+        float: right;
+        font-size: 24px;
+    }
+    @media only screen and (min-width: 584px) and (max-width: 991px) {
+        .top-navbar .showSideNav {
+            display: block;
+        }
+        .top-navbar .qui-dashboard {
+            display: none;
+        }
+    }
+    @media only screen and (min-width: 304px) and (max-width: 584px) {
+        .top-navbar .showSideNav {
+            display: block;
+        }
+        .top-navbar .qui-dashboard {
+            display: none;
+        }
+    }
+    @media only screen and (max-width: 384px) {
+        .top-navbar span {
+            font-size: 20px;
+        }
+        .top-navbar .showSideNav {
+            display: block;
+        }
+        .top-navbar .qui-dashboard {
+            display: none;
+        }
+    }
+    @media only screen and (max-width: 245px) {
+        .top-navbar .nav-name {
+            font-size: 18px;
+        }
     }
 </style>

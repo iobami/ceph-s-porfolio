@@ -1,7 +1,11 @@
 <template>
   <v-app id="app">
-    <SideNavigation/>
-    <TopNavigation/>
+    <SideNavigation
+    class="side-nav"
+    />
+    <TopNavigation
+    class="top-nav"
+    />
     <router-view
     id="main"
     />
@@ -35,6 +39,9 @@ export default {
   #main {
     margin-left: 250px;
   }
+.top-nav{
+  margin-left: 250px;
+}
 ::-webkit-scrollbar {
   width: 3px;
 }
@@ -47,5 +54,38 @@ export default {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C8C8C8;
+}
+@media only screen and (min-width: 584px) and (max-width: 991px) {
+  #main {
+    margin-left: 0;
+  }
+  .side-nav {
+    display: none;
+  }
+  .top-nav {
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 204px) and (max-width: 584px) {
+  #main {
+    margin-left: 0;
+  }
+  .side-nav {
+    display: none;
+  }
+  .top-nav {
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 204px) {
+  #main {
+    margin-left: 0;
+  }
+  .side-nav {
+    display: none;
+  }
+  .top-nav {
+    margin-left: 0;
+  }
 }
 </style>

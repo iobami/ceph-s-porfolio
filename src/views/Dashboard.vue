@@ -187,4 +187,50 @@ export default {
   .dashboard-card-body .bottom-div {
     margin: 24px 22px 4px 22px;
   }
+  @media only screen and (min-width: 584px) and (max-width: 991px) {
+    .left-dashboard {
+      clear: both;
+      width: 100%;
+    }
+    .right-dashboard {
+      clear: both;
+      width: 100%;
+      margin-top: 135px;
+    }
+    .dashboard-card {
+      min-height: 50vh;
+      max-height: 50vh;
+      background-color: white;
+      width: 77%;
+      margin: -8em auto;
+      border-radius: 5px;
+      z-index: 0;
+      position: relative;
+      box-shadow: 0 2px 8px 2px #B8B8B8;
+      padding: 72px 22px 0 22px;
+    }
+  }
+  @media only screen and (min-width: 204px) and (max-width: 584px) {
+    .left-dashboard {
+      clear: both;
+      width: 100%;
+    }
+    .right-dashboard {
+      clear: both;
+      width: 100%;
+      margin-top: 135px;
+    }
+    .dashboard-card {
+      min-height: 50vh;
+      max-height: 50vh;
+      background-color: white;
+      width: 90%;
+      margin: -8em auto;
+      border-radius: 5px;
+      z-index: 0;
+      position: relative;
+      box-shadow: 0 2px 8px 2px #B8B8B8;
+      padding: 72px 22px 0 22px;
+    }
+  }
 </style>
