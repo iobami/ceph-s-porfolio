@@ -89,7 +89,10 @@ export default {
     min-height: 13vh;
     max-height: 13vh;
     background-color: #3C45B0;
-    /*background-color: rgba(0,0,0,.87);*/
+      /*background: -webkit-linear-gradient(right, #07118c, #5f68d4);*/
+      /*background: -o-linear-gradient(right, #07118c, #5f68d4);*/
+      /*background: -moz-linear-gradient(right, #07118c, #5f68d4);*/
+      /*background: linear-gradient(right, #07118c, #5f68d4);*/
     width: 63%;
     margin: 0 auto;
     border-radius: 5px;

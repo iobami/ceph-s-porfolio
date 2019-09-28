@@ -2,11 +2,16 @@
   <v-app id="app">
     <SideNavigation
     class="side-nav"
+    v-bind:show-side-nav="showSideNav"
+    v-on:hide-side-nav="hideSideNav"
     />
     <TopNavigation
     class="top-nav"
+    v-bind:show-side-nav="showSideNav"
+    v-on:display-side-nav="displaySideNav"
     />
     <router-view
+    v-on:hide-side-nav="hideSideNav"
     id="main"
     />
   </v-app>
@@ -18,9 +23,24 @@ import TopNavigation from './components/TopNavigation.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      // showSideNav: true,
+    };
+  },
   components: {
     SideNavigation,
     TopNavigation,
+  },
+  methods: {
+    displaySideNav() {
+      document.getElementById('mySidenav').style.display = 'block';
+      // document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
+    },
+    hideSideNav() {
+      document.getElementById('mySidenav').style.display = 'none';
+      // document.body.style.backgroundColor = 'white';
+    },
   },
 };
 </script>
@@ -42,6 +62,9 @@ export default {
 .top-nav{
   margin-left: 250px;
 }
+/*.side-nav {*/
+  /*width: 250px;*/
+/*}*/
 ::-webkit-scrollbar {
   width: 3px;
 }

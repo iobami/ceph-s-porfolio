@@ -4,6 +4,8 @@
       <img src="../assets/images/qui-logo.jpeg" alt="qui logo">&nbsp;
       <span>Qui</span>
     </div>
+      <span class="closeButton" @click="()=>this.$emit('hide-side-nav')"
+      >&times;</span>
       <hr>
       <div class="nav-button">
           <div v-for="(routes, routesKey) in navRoute" :key="routesKey">
@@ -30,6 +32,12 @@ export default {
       const currentId = e.currentTarget.id.split('_');
       $(`#nav-button_${currentId[1]}`).addClass('badge-info');
     });
+  },
+  props: {
+    showSideNav: {
+      Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -83,7 +91,7 @@ export default {
     height: 100%;
     width: 250px;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
       background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))
@@ -138,9 +146,11 @@ export default {
   .sidenav .closeButton {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 10px;
+      /*left: 45px;*/
     font-size: 36px;
     margin-left: 50px;
+    cursor: pointer;
   }
   .nav-button {
       margin: 42px auto;

@@ -1,7 +1,8 @@
 <template>
     <div class="top-navbar">
         <span class="nav-name">{{ hideHeader }}</span>
-        <span class="showSideNav">&#9776;</span>
+        <span @click="()=>this.$emit('display-side-nav')"
+              class="showSideNav">&#9776;</span>
         <span class="mdi mdi-view-dashboard qui-dashboard"></span>
     </div>
 </template>
@@ -16,7 +17,16 @@ export default {
       navName: '',
     };
   },
+  props: {
+    showSideNav: {
+      Boolean,
+      required: true,
+    },
+  },
   methods: {
+    // showSideNav() {
+    //   document.getElementById('mySidenav').style.width = '250px';
+    // },
   },
 };
 </script>
@@ -35,6 +45,7 @@ export default {
         display: none;
         float: right;
         font-size: 24px;
+        cursor: pointer;
     }
     .qui-dashboard {
         float: right;
