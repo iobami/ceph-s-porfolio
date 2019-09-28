@@ -14,10 +14,10 @@
               <!--</router-link>-->
               <button @click="goToRoute(routes.route)"
                       v-ripple class="btn" :id="`nav-button_${routesKey}`">
-                  <span>{{ routes.name }}</span>
+                  <span class="nav-route-name" >{{ routes.name }}</span>
                   <span class="nav-icon">
                           <i :class="routes.className"></i>
-                      </span>
+                  </span>
               </button>
           </div>
       </div>
@@ -44,13 +44,13 @@ export default {
           name: 'Dashboard', route: '/dashboard', className: 'mdi mdi-view-dashboard qui-dashboard',
         },
         {
-          name: 'Upload Questions', route: '/file-upload', className: '',
+          name: 'Upload Questions', route: '/file-upload', className: 'mdi mdi-exit-to-app',
         },
         {
-          name: 'Create Questions', route: '/create-question', className: '',
+          name: 'Create Questions', route: '/create-question', className: 'mdi mdi-border-color',
         },
         {
-          name: 'Features', route: '/features', className: '',
+          name: 'Features', route: '/features', className: 'mdi mdi-reorder-vertical',
         },
       ],
     };
@@ -106,12 +106,20 @@ export default {
     padding-top: 20px;
     box-shadow: 0 2px 8px 3px #606060;
   }
+    .nav-button {
+        margin: 42px auto;
+        width: 88%;
+    }
+  .nav-button span {
+      font-size: 20px;
+  }
   .nav-button .nav-icon {
       float: right;
+      font-size: 21px;
   }
   .nav-button button {
     /*padding: 8px 8px 8px 32px;*/
-      padding: 8px;
+      padding: 10px;
       margin: 12px 0 12px 0;
       text-align: left;
     text-decoration: none;
@@ -162,10 +170,6 @@ export default {
         color: #c0c0c0;
         font-size: 37px;
     }
-  .nav-button {
-      margin: 42px auto;
-      width: 80%;
-  }
     @media screen and (min-width: 991px) {
         #mySidenav {
             display: block;

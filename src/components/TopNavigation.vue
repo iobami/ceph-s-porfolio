@@ -3,7 +3,8 @@
         <span class="nav-name">{{ hideHeader }}</span>
         <span @click="()=>this.$emit('display-side-nav')"
               class="showSideNav">&#9776;</span>
-        <span @click="goToDashboard()" class="mdi mdi-view-dashboard qui-dashboard"></span>
+        <span @click="goToDashboard()"
+              class="mdi mdi-view-dashboard qui-dashboard"></span>
     </div>
 </template>
 
@@ -37,9 +38,17 @@ export default {
         padding: 18px;
         background-color: #F0F0F0;
         color: #606060;
+        box-shadow: 0 2px 8px 2px #B8B8B8;
+        /*position: relative;*/
+        /*top: 0;*/
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
     }
     .nav-name {
         font-size: 24px;
+        float: left;
     }
     .showSideNav {
         display: none;
@@ -50,6 +59,7 @@ export default {
     .qui-dashboard {
         float: right;
         font-size: 24px;
+        width: 22%;
         cursor: pointer;
     }
     @media only screen and (min-width: 584px) and (max-width: 991px) {

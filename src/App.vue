@@ -77,6 +77,8 @@ export default {
 /*}*/
   #main {
     margin-left: 250px;
+    padding-top: 9em;
+    padding-bottom: 8em;
   }
 .top-nav{
   margin-left: 250px;

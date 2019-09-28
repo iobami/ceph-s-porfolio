@@ -44,15 +44,17 @@
                 <v-row>
                     <v-col cols="12" sm="6" md="3" v-for="(option, optionKey) in options"
                            :key="optionKey">
-                        <span class="add-option-button" style="float: right; margin-top: -7px"
-                              @click="removeOption(optionKey)">-</span>
-                        <span style="display: inline">
+                        <div :id="`optionBox_${optionKey}`">
+                            <span class="add-option-button" style="float: right; margin-top: -7px"
+                                  @click="removeOption(optionKey)">-</span>
+                            <span style="display: inline">
                             <v-text-field
                                     :label="`Option ${option}`"
                                     placeholder="Enter an option"
                                     :value="optionValue"
                             ></v-text-field>
                         </span>
+                        </div>
                     </v-col>
                 </v-row>
             </div>
@@ -68,6 +70,7 @@
 export default {
   name: 'create-question',
   mounted() {
+    /* eslint-env jquery */
     this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
   },
   data() {
@@ -88,8 +91,9 @@ export default {
       //     this.options.splice(i, 1);
       //   }
       // }
-      this.options.splice(optionKey, 1);
-      // console.log(this.options);
+      // this.options.splice(optionKey, 1);
+      console.log(optionKey);
+      $(`#optionBox_${optionKey}`).remove();
     },
   },
 };
@@ -100,6 +104,8 @@ export default {
         background-color: #F0F0F0;
         min-height: 100vh;
         padding-top: 72px;
+        z-index: 0;
+        /*padding-bottom: 72px;*/
     }
     .new-question-card {
         min-height: 50vh;
@@ -117,7 +123,7 @@ export default {
         min-height: 13vh;
         max-height: 13vh;
         background-color: #3C45B0;
-        /*background-color: rgba(0,0,0,.87);*/
+        background-image: linear-gradient(to bottom right, #07118c, #5f68d4);
         width: 63%;
         margin: 0 auto;
         border-radius: 5px;
