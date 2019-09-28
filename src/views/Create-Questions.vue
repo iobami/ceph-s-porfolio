@@ -89,7 +89,7 @@ export default {
       //   }
       // }
       this.options.splice(optionKey, 1);
-      console.log(this.options);
+      // console.log(this.options);
     },
   },
 };

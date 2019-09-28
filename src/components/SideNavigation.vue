@@ -4,17 +4,21 @@
       <img src="../assets/images/qui-logo.jpeg" alt="qui logo">&nbsp;
       <span>Qui</span>
     </div>
-      <span class="closeButton" @click="()=>this.$emit('hide-side-nav')"
-      >&times;</span>
+      <span id="closeButton" class="closeButton" @click="()=>this.$emit('hide-side-nav')"
+      style="display: none;">&times;
+      </span>
       <hr>
       <div class="nav-button">
           <div v-for="(routes, routesKey) in navRoute" :key="routesKey">
-              <router-link :to="routes.route">
-                  <button v-ripple class="btn" :id="`nav-button_${routesKey}`">
-                      <span><i class="fa fa-address-card-o"></i></span>
-                      <span>{{ routes.name }}</span>
-                  </button>
-              </router-link>
+              <!--<router-link :to="routes.route">-->
+              <!--</router-link>-->
+              <button @click="goToRoute(routes.route)"
+                      v-ripple class="btn" :id="`nav-button_${routesKey}`">
+                  <span>{{ routes.name }}</span>
+                  <span class="nav-icon">
+                          <i :class="routes.className"></i>
+                      </span>
+              </button>
           </div>
       </div>
   </div>
@@ -33,31 +37,29 @@ export default {
       $(`#nav-button_${currentId[1]}`).addClass('badge-info');
     });
   },
-  props: {
-    showSideNav: {
-      Boolean,
-      required: true,
-    },
-  },
   data() {
     return {
       navRoute: [
         {
-          name: 'Dashboard', route: '/dashboard',
+          name: 'Dashboard', route: '/dashboard', className: 'mdi mdi-view-dashboard qui-dashboard',
         },
         {
-          name: 'Upload Questions', route: '/file-upload',
+          name: 'Upload Questions', route: '/file-upload', className: '',
         },
         {
-          name: 'Create Questions', route: 'create-question',
+          name: 'Create Questions', route: '/create-question', className: '',
         },
         {
-          name: 'Features', route: 'features',
+          name: 'Features', route: '/features', className: '',
         },
       ],
     };
   },
   methods: {
+    goToRoute(route) {
+      this.$router.push(route);
+      this.$emit('hide-side-nav');
+    },
   },
 };
 </script>
@@ -104,6 +106,9 @@ export default {
     padding-top: 20px;
     box-shadow: 0 2px 8px 3px #606060;
   }
+  .nav-button .nav-icon {
+      float: right;
+  }
   .nav-button button {
     /*padding: 8px 8px 8px 32px;*/
       padding: 8px;
@@ -117,6 +122,7 @@ export default {
     /*color: #f3f3f3;*/
     display: block;
     transition: 0.3s;
+      font-size: 16px;
   }
     .nav-button button:not(.badge-info) {
         /*color: #f3f3f3;*/
@@ -152,13 +158,44 @@ export default {
     margin-left: 50px;
     cursor: pointer;
   }
+    .sidenav .closeButton:hover {
+        color: #c0c0c0;
+        font-size: 37px;
+    }
   .nav-button {
       margin: 42px auto;
       width: 80%;
   }
-
+    @media screen and (min-width: 991px) {
+        #mySidenav {
+            display: block;
+        }
+        #closeButton {
+            display: none;
+        }
+    }
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+      .sidenav .closeButton {
+          display: block;
+      }
   }
+    /*@media screen and (max-height: 1000px) {*/
+        /*.sidenav {*/
+            /*padding-top: 15px;*/
+            /*!*width: 350px;*!*/
+        /*}*/
+        /*.sidenav .closeButton {*/
+            /*display: block;*/
+        /*}*/
+    /*}*/
+    @media screen and (max-height: 550px) {
+        .sidenav {
+            width: 350px;
+        }
+        .sidenav .closeButton {
+            display: block;
+        }
+    }
 </style>

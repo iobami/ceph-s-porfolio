@@ -3,7 +3,7 @@
         <span class="nav-name">{{ hideHeader }}</span>
         <span @click="()=>this.$emit('display-side-nav')"
               class="showSideNav">&#9776;</span>
-        <span class="mdi mdi-view-dashboard qui-dashboard"></span>
+        <span @click="goToDashboard()" class="mdi mdi-view-dashboard qui-dashboard"></span>
     </div>
 </template>
 
@@ -17,16 +17,16 @@ export default {
       navName: '',
     };
   },
-  props: {
-    showSideNav: {
-      Boolean,
-      required: true,
-    },
-  },
+  // props: {
+  //   showSideNav: {
+  //     Boolean,
+  //     required: true,
+  //   },
+  // },
   methods: {
-    // showSideNav() {
-    //   document.getElementById('mySidenav').style.width = '250px';
-    // },
+    goToDashboard() {
+      this.$router.push('/dashboard');
+    },
   },
 };
 </script>
@@ -50,6 +50,7 @@ export default {
     .qui-dashboard {
         float: right;
         font-size: 24px;
+        cursor: pointer;
     }
     @media only screen and (min-width: 584px) and (max-width: 991px) {
         .top-navbar .showSideNav {

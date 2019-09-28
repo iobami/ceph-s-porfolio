@@ -2,16 +2,15 @@
   <v-app id="app">
     <SideNavigation
     class="side-nav"
-    v-bind:show-side-nav="showSideNav"
     v-on:hide-side-nav="hideSideNav"
     />
     <TopNavigation
     class="top-nav"
-    v-bind:show-side-nav="showSideNav"
     v-on:display-side-nav="displaySideNav"
     />
     <router-view
     v-on:hide-side-nav="hideSideNav"
+    @click="hideSideNav"
     id="main"
     />
   </v-app>
@@ -23,6 +22,10 @@ import TopNavigation from './components/TopNavigation.vue';
 
 export default {
   name: 'App',
+  mounted() {
+    /* eslint-env jquery */
+    this.onResize();
+  },
   data() {
     return {
       // showSideNav: true,
@@ -33,12 +36,28 @@ export default {
     TopNavigation,
   },
   methods: {
+    onResize() {
+      $(window).on('resize', () => {
+        if ($(window).width() > 990) {
+          document.getElementById('mySidenav').style.display = 'block';
+          document.getElementById('closeButton').style.display = 'none';
+        } else {
+          document.getElementById('mySidenav').style.display = 'none';
+        }
+      });
+    },
     displaySideNav() {
       document.getElementById('mySidenav').style.display = 'block';
+      document.getElementById('closeButton').style.display = 'block';
       // document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
     },
     hideSideNav() {
-      document.getElementById('mySidenav').style.display = 'none';
+      // if ($('#statusBar').is(':visible')) {
+      //   $('.form_login').css('margin-top', '-80px');
+      // }
+      if ($(window).width() < 990) {
+        document.getElementById('mySidenav').style.display = 'none';
+      }
       // document.body.style.backgroundColor = 'white';
     },
   },
@@ -77,6 +96,17 @@ export default {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C8C8C8;
+}
+@media only screen and (min-width: 991px) {
+    #main {
+        margin-left: 250px;
+    }
+    #mySidenav {
+        display: block;
+    }
+    .top-nav {
+        margin-left: 250px;
+    }
 }
 @media only screen and (min-width: 584px) and (max-width: 991px) {
   #main {
