@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import questions from './testData';
 
 export default {
@@ -78,20 +78,20 @@ export default {
     };
   },
   methods: {
-    getQuestions() {
-      axios({
-        method: 'GET',
-        url: process.env.VUE_APP_QUI,
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json',
-        },
-      }).then(({ data }) => {
-        console.log(data);
-      }).catch((err) => {
-        console.log(err);
-      });
-    },
+    // getQuestions() {
+    //   axios({
+    //     method: 'GET',
+    //     url: process.env.VUE_APP_QUI,
+    //     headers: {
+    //       accept: 'application/json',
+    //       'content-type': 'application/json',
+    //     },
+    //   }).then(({ data }) => {
+    //     console.log(data);
+    //   }).catch((err) => {
+    //     console.log(err);
+    //   });
+    // },
     getQuestionNumber() {
       this.questionCount = 0;
       this.questionsArray.forEach((questionObject) => {

@@ -93,7 +93,7 @@ export default {
     height: 100%;
     width: 250px;
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     left: 0;
       background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))

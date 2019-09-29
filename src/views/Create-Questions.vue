@@ -92,7 +92,6 @@ export default {
       //   }
       // }
       // this.options.splice(optionKey, 1);
-      console.log(optionKey);
       $(`#optionBox_${optionKey}`).remove();
     },
   },
