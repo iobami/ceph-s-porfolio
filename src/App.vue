@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <notifications />
     <SideNavigation
     class="side-nav"
     v-on:hide-side-nav="hideSideNav"
@@ -47,7 +48,8 @@ export default {
       });
     },
     displaySideNav() {
-      document.getElementById('mySidenav').style.display = 'block';
+      // document.getElementById('mySidenav').style.display = 'block';
+      $('#mySidenav').slideToggle();
       document.getElementById('closeButton').style.display = 'block';
       // document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
     },
@@ -56,7 +58,8 @@ export default {
       //   $('.form_login').css('margin-top', '-80px');
       // }
       if ($(window).width() < 990) {
-        document.getElementById('mySidenav').style.display = 'none';
+        // document.getElementById('mySidenav').style.display = 'none';
+        $('#mySidenav').slideToggle();
       }
       // document.body.style.backgroundColor = 'white';
     },

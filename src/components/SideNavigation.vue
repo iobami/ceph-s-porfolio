@@ -49,9 +49,9 @@ export default {
         {
           name: 'Create Questions', route: '/create-question', className: 'mdi mdi-border-color',
         },
-        {
-          name: 'Features', route: '/features', className: 'mdi mdi-reorder-vertical',
-        },
+        // {
+        //   name: 'Features', route: '/features', className: 'mdi mdi-reorder-vertical',
+        // },
       ],
     };
   },

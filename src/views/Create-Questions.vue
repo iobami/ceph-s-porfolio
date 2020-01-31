@@ -1,72 +1,108 @@
 <template>
     <div class="new-question-container">
+        <!--<v-alert type="success">-->
+            <!--I'm a success alert.-->
+        <!--</v-alert>-->
         <div class="new-question-card-offset">
             <span>Create Question</span>
             <span style="color: #D3D3D3; font-size: 11px;">Enter a single question</span>
         </div>
         <div class="new-question-card">
             <hr>
-            <div class="new-question-card-body">
-                <v-textarea
-                        label="Enter Question *"
-                        required
-                        :value="question"
-                        :placeholder="msg"
-                        rows="2"
-                        row-height="15"
-                ></v-textarea>
-            </div>
-            <div>
-                <v-row>
-                    <v-col cols="12" sm="6" md="6">
-                        <v-text-field
-                                label="Answer *"
-                                placeholder="Enter correct answer"
-                                required
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-text-field
-                                label="Course Code"
-                                placeholder="Enter course code"
-                        ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="3">
-                        <v-text-field
-                                label="Course Title"
-                                placeholder="Enter course title"
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-            </div>
-            <div>
-                <span class="add-option-button" @click="addOption">+</span>
-                <v-row>
-                    <v-col cols="12" sm="6" md="3" v-for="(option, optionKey) in options"
-                           :key="optionKey">
-                        <div :id="`optionBox_${optionKey}`">
+            <form v-on:submit.prevent="submitForm()">
+                <div class="new-question-card-body">
+                    <v-textarea
+                            :disabled="loading"
+                            label="Enter Question *"
+                            required
+                            v-model="question"
+                            :placeholder="msg"
+                            rows="2"
+                            row-height="15"
+                    ></v-textarea>
+                </div>
+                <div>
+                    <v-row>
+                        <v-col cols="12" sm="6" md="6">
+                            <v-text-field
+                                    :disabled="loading"
+                                    label="Answer *"
+                                    v-model="answer"
+                                    placeholder="Enter correct answer"
+                                    required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-text-field
+                                    :disabled="loading"
+                                    v-model="courseCode"
+                                    label="Course Code"
+                                    placeholder="Enter course code"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="3">
+                            <v-text-field
+                                    :disabled="loading"
+                                    v-model="courseTitle"
+                                    label="Course Title"
+                                    placeholder="Enter course title"
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                </div>
+                <div>
+                    <!--<span class="add-option-button" @click="addOption">+</span>-->
+                    <v-btn
+                            color="#820cc7"
+                            dark
+                            small
+                            bottom
+                            left
+                            fab
+                            @click="addOption"
+                    >
+                        <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                    <v-row>
+                        <v-col cols="12" sm="6" md="3" v-for="(option, optionKey) in options"
+                               :key="optionKey">
+                            <div :id="`optionBox_${optionKey}`">
                             <span class="add-option-button" style="float: right; margin-top: -7px"
                                   @click="removeOption(optionKey)">-</span>
-                            <span style="display: inline">
+                                <span style="display: inline">
                             <v-text-field
-                                    :label="`Option ${option}`"
+                                    :disabled="loading"
+                                    :label="`Option ${optionKey + 1}`"
                                     placeholder="Enter an option"
-                                    :value="optionValue"
+                                    :id="`option_${optionKey + 1}`"
+                                    required
                             ></v-text-field>
                         </span>
-                        </div>
-                    </v-col>
-                </v-row>
-            </div>
-            <div style="clear: both; text-align: center">
-                <!--<button class="btn badge-info">Upload</button>-->
-                <!--<v-btn color="success">Success</v-btn>-->
-            </div>
+                            </div>
+                        </v-col>
+                    </v-row>
+                </div>
+                <div class="submit-btn">
+                    <v-btn
+                            :loading="loading"
+                            :disabled="loading"
+                            color="#07118c"
+                            class="ma-2"
+                            type="submit"
+                            outlined
+                    >
+                        Upload
+                        <v-icon right dark>mdi-cloud-upload</v-icon>
+                    </v-btn>
+                </div>
+            </form>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'create-question',
   mounted() {
@@ -77,8 +113,13 @@ export default {
     return {
       msg: 'Enter a question',
       question: '',
+      answer: '',
+      courseCode: '',
+      courseTitle: '',
       options: [],
       optionValue: '',
+      statusMessage: 'Testing message',
+      loading: false,
     };
   },
   methods: {
@@ -93,6 +134,48 @@ export default {
       // }
       // this.options.splice(optionKey, 1);
       $(`#optionBox_${optionKey}`).remove();
+    },
+    submitForm() {
+      this.loading = true;
+      const arrayOfOption = [];
+      this.options.forEach((option, optionKey) => {
+        const optValue = $(`#option_${optionKey + 1}`).val();
+        arrayOfOption.push(optValue.toLowerCase());
+      });
+      const courseBody = {
+        code: this.courseCode.toLowerCase(),
+        title: this.courseTitle.toLowerCase(),
+      };
+      const questionsBody = {
+        question: this.question.toLowerCase(),
+        options: arrayOfOption,
+        answer: this.answer.toLowerCase(),
+        course: courseBody,
+      };
+      console.log(questionsBody);
+      const createUpdateUrl = 'https://qui-ndc.herokuapp.com/api/question/add';
+      axios({
+        method: 'POST',
+        url: createUpdateUrl,
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        data: JSON.stringify(questionsBody),
+      }).then(({ data }) => {
+        if (data.status) {
+          this.question = '';
+          this.answer = '';
+          this.options = [];
+          this.successNotification(data.message);
+        } else {
+          this.errorNotification(data.message);
+        }
+      }).catch()
+        .finally(() => {
+          this.errorNotification('Please check your network and try again');
+          this.loading = false;
+        });
     },
   },
 };
@@ -141,6 +224,9 @@ export default {
         font-size: 21px;
         font-weight: bold;
         cursor: pointer;
+    }
+    .submit-btn {
+        padding: 6px 0;
     }
     @media only screen and (min-width: 606px) and (max-width: 991px) {
         .new-question-card {

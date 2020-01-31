@@ -3,8 +3,19 @@
         <span class="nav-name">{{ hideHeader }}</span>
         <span @click="()=>this.$emit('display-side-nav')"
               class="showSideNav">&#9776;</span>
-        <span @click="goToDashboard()"
-              class="mdi mdi-view-dashboard qui-dashboard"></span>
+        <div class="qui-dashboard">
+            <span v-for="(routes, routesKey) in navRoute" :key="routesKey">
+                <span @click="goToRoute(routes.route)"
+                      :class="`${routes.className} qui-dashboard-logo`">
+                </span>
+            </span>
+            <!--<span @click="goToDashboard()"-->
+                  <!--class="mdi mdi-border-color qui-dashboard-logo"></span>-->
+            <!--<span @click="goToDashboard()"-->
+                  <!--class="mdi mdi-exit-to-app qui-dashboard-logo"></span>-->
+            <!--<span @click="goToDashboard()"-->
+                  <!--class="mdi mdi-view-dashboard qui-dashboard-logo"></span>-->
+        </div>
     </div>
 </template>
 
@@ -16,6 +27,20 @@ export default {
   data() {
     return {
       navName: '',
+      navRoute: [
+        {
+          name: 'Dashboard', route: '/dashboard', className: 'mdi mdi-view-dashboard qui-dashboard',
+        },
+        {
+          name: 'Upload Questions', route: '/file-upload', className: 'mdi mdi-exit-to-app',
+        },
+        {
+          name: 'Create Questions', route: '/create-question', className: 'mdi mdi-border-color',
+        },
+        // {
+        //   name: 'Features', route: '/features', className: 'mdi mdi-reorder-vertical',
+        // },
+      ],
     };
   },
   // props: {
@@ -25,8 +50,8 @@ export default {
   //   },
   // },
   methods: {
-    goToDashboard() {
-      this.$router.push('/dashboard');
+    goToRoute(route) {
+      this.$router.push(route);
     },
   },
 };
@@ -58,9 +83,14 @@ export default {
     }
     .qui-dashboard {
         float: right;
-        font-size: 24px;
-        width: 22%;
+        /*font-size: 24px;*/
+        width: 34%;
         cursor: pointer;
+    }
+    .qui-dashboard-logo {
+        /*float: right;*/
+        font-size: 27px;
+        margin-left: 16px;
     }
     @media only screen and (min-width: 584px) and (max-width: 991px) {
         .top-navbar .showSideNav {

@@ -1,12 +1,15 @@
-// import Vue from 'vue';
+import Vue from 'vue';
+
 export default {
   methods: {
-    // errorNotification: (text, title = 'Error!') => {
-    //   Vue.notify({ type: 'error', title, text });
-    // },
-    // successNotification: (text, title = 'Successful') => {
-    //   Vue.notify({ type: 'success', title, text });
-    // },
+    errorNotification: (text, title = 'Error!') => {
+      Vue.notify({ type: 'error', title, text });
+    },
+    successNotification: (text, title = 'Successful') => {
+      Vue.notify({
+        type: 'success', title, text,
+      });
+    },
   },
   computed: {
     hideHeader: function isBusy() {
