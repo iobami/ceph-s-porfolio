@@ -63,21 +63,22 @@
                     >
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <v-row>
+                    <v-row id="optionContainer">
                         <v-col cols="12" sm="6" md="3" v-for="(option, optionKey) in options"
-                               :key="optionKey">
-                            <div :id="`optionBox_${optionKey}`">
-                            <span class="add-option-button" style="float: right; margin-top: -7px"
-                                  @click="removeOption(optionKey)">-</span>
+                               :key="optionKey" :id="`optionBox_${optionKey}`">
+                            <div>
+                                <span class="add-option-button"
+                                      style="float: right; margin-top: -7px"
+                                      @click="removeOption(optionKey)">-</span>
                                 <span style="display: inline">
-                            <v-text-field
-                                    :disabled="loading"
-                                    :label="`Option ${optionKey + 1}`"
-                                    placeholder="Enter an option"
-                                    :id="`option_${optionKey + 1}`"
-                                    required
-                            ></v-text-field>
-                        </span>
+                                    <v-text-field
+                                            :disabled="loading"
+                                            label="Option"
+                                            placeholder="Enter an option"
+                                            :id="`option_${optionKey + 1}`"
+                                            required
+                                    ></v-text-field>
+                                </span>
                             </div>
                         </v-col>
                     </v-row>
@@ -124,23 +125,20 @@ export default {
   },
   methods: {
     addOption() {
-      this.options.push(this.optionValue);
+      // this.options.push(this.optionValue);
+      this.options.push('');
     },
     removeOption(optionKey) {
-      // for( let i = 0; i < this.options.length; i++){
-      //   if ( this.options[i] === this.optionValue) {
-      //     this.options.splice(i, 1);
-      //   }
-      // }
-      // this.options.splice(optionKey, 1);
       $(`#optionBox_${optionKey}`).remove();
     },
     submitForm() {
       this.loading = true;
       const arrayOfOption = [];
-      this.options.forEach((option, optionKey) => {
-        const optValue = $(`#option_${optionKey + 1}`).val();
-        arrayOfOption.push(optValue.toLowerCase());
+      this.options.forEach((option, optionIndex) => {
+        const optValue = $(`#option_${optionIndex + 1}`).val();
+        if (optValue) {
+          arrayOfOption.push(optValue.toLowerCase());
+        }
       });
       const courseBody = {
         code: this.courseCode.toLowerCase(),
@@ -152,11 +150,10 @@ export default {
         answer: this.answer.toLowerCase(),
         course: courseBody,
       };
-      console.log(questionsBody);
-      const createUpdateUrl = 'https://qui-ndc.herokuapp.com/api/question/add';
+      const addQuestionUrl = '/question/add';
       axios({
         method: 'POST',
-        url: createUpdateUrl,
+        url: process.env.VUE_APP_QUI + addQuestionUrl,
         headers: {
           accept: 'application/json',
           'content-type': 'application/json',
@@ -171,9 +168,10 @@ export default {
         } else {
           this.errorNotification(data.message);
         }
-      }).catch()
+      }).catch(() => {
+        this.errorNotification('Please check your network and try again');
+      })
         .finally(() => {
-          this.errorNotification('Please check your network and try again');
           this.loading = false;
         });
     },

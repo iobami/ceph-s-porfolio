@@ -48,14 +48,15 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import questions from './testData';
 
 export default {
   name: 'dashboard',
   mounted() {
     this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
-    // this.getQuestions();
+    this.getCourses();
+    this.getQuestions();
     this.getCourseIndex();
     this.questionTimer();
   },
@@ -78,20 +79,34 @@ export default {
     };
   },
   methods: {
-    // getQuestions() {
-    //   axios({
-    //     method: 'GET',
-    //     url: process.env.VUE_APP_QUI,
-    //     headers: {
-    //       accept: 'application/json',
-    //       'content-type': 'application/json',
-    //     },
-    //   }).then(({ data }) => {
-    //     console.log(data);
-    //   }).catch((err) => {
-    //     console.log(err);
-    //   });
-    // },
+    getCourses() {
+      const courseUrl = '/courses';
+      axios({
+        method: 'GET',
+        url: process.env.VUE_APP_QUI + courseUrl,
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+      }).then(({ data }) => {
+        this.courses = data;
+      }).catch(() => {
+      });
+    },
+    getQuestions() {
+      const questionsUrl = '/questions';
+      axios({
+        method: 'GET',
+        url: process.env.VUE_APP_QUI + questionsUrl,
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+      }).then(({ data }) => {
+        this.questionsArray = data;
+      }).catch(() => {
+      });
+    },
     getQuestionNumber() {
       this.questionCount = 0;
       this.questionsArray.forEach((questionObject) => {

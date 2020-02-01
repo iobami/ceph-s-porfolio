@@ -57,8 +57,8 @@ export default {
   },
   methods: {
     goToRoute(route) {
-      this.$router.push(route);
       this.$emit('hide-side-nav');
+      this.$router.push(route);
     },
   },
 };
