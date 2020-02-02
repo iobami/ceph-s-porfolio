@@ -5,7 +5,7 @@
               class="showSideNav">&#9776;</span>
         <div class="qui-dashboard">
             <span v-for="(routes, routesKey) in navRoute" :key="routesKey">
-                <span @click="goToRoute(routes.route)"
+                <span @click="goToRoute(routes.route, routesKey)"
                       :class="`${routes.className} qui-dashboard-logo`">
                 </span>
             </span>
@@ -23,6 +23,7 @@
 export default {
   mounted() {
     // this.navName = this.$store.commit('setHideHeader', '');
+    /* eslint-env jquery */
   },
   data() {
     return {
@@ -50,8 +51,16 @@ export default {
   //   },
   // },
   methods: {
-    goToRoute(route) {
-      this.$router.push(route);
+    goToRoute(route, routeKey) {
+      this.navRoute.forEach((routes) => {
+        if (this.$route.meta.breadcrumb === routes.name) {
+          $('.nav-button button').removeClass('badge-info');
+          $(`#nav-button_${routeKey}`).addClass('badge-info');
+        }
+      });
+      if (this.$route.path !== route) {
+        this.$router.push(route);
+      }
     },
   },
 };

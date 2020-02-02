@@ -36,6 +36,7 @@ export default {
       const currentId = e.currentTarget.id.split('_');
       $(`#nav-button_${currentId[1]}`).addClass('badge-info');
     });
+    this.getActiveRoute();
   },
   data() {
     return {
@@ -58,7 +59,17 @@ export default {
   methods: {
     goToRoute(route) {
       this.$emit('hide-side-nav');
-      this.$router.push(route);
+      if (this.$route.path !== route) {
+        this.$router.push(route);
+      }
+    },
+    getActiveRoute() {
+      this.navRoute.forEach((route, routeKey) => {
+        if (this.$route.meta.breadcrumb === route.name) {
+          $('.nav-button button').removeClass('badge-info');
+          $(`#nav-button_${routeKey}`).addClass('badge-info');
+        }
+      });
     },
   },
 };
