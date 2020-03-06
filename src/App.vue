@@ -5,13 +5,7 @@
     class="side-nav"
     v-on:hide-side-nav="hideSideNav"
     />
-    <TopNavigation
-    class="top-nav"
-    v-on:display-side-nav="displaySideNav"
-    />
     <router-view
-    v-on:hide-side-nav="hideSideNav"
-    @click="hideSideNav"
     id="main"
     />
   </v-app>
@@ -19,7 +13,6 @@
 
 <script>
 import SideNavigation from './components/SideNavigation.vue';
-import TopNavigation from './components/TopNavigation.vue';
 
 export default {
   name: 'App',
@@ -34,7 +27,6 @@ export default {
   },
   components: {
     SideNavigation,
-    TopNavigation,
   },
   methods: {
     onResize() {
@@ -80,8 +72,6 @@ export default {
 /*}*/
   #main {
     margin-left: 250px;
-    padding-top: 9em;
-    padding-bottom: 8em;
   }
 .top-nav{
   margin-left: 250px;

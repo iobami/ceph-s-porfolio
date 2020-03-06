@@ -1,26 +1,11 @@
 <template>
     <div>
-        <h1>Page Not Found bruhh</h1>
-        <div style="margin: auto; width: 70%">
-            <form v-on:submit.prevent="submitForm()">
-                <div v-for="(roles, rolesKey) in navRoute" :key="rolesKey">
-                    <input :class="`roles_${rolesKey}`" id="roles"
-                           type="checkbox" name="vehicle1" :value="roles.name"
-                    @click="showPermissions">&nbsp;{{ roles.name }}<br>
-                    <div v-if="ifPermission">
-                        <div style="margin-left: 12px"
-                             v-for="(permission, permissionKey)
-                     in roles.className" :key="permissionKey">
-                            <input :class="`roles_${rolesKey}${permissionKey}`" :value="permission"
-                                   id="permission" type="checkbox" @change="checkBox">
-                            {{ permission }}<br>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="text-align: center">Opps! Page Not Found bruhh</h1>
     </div>
 </template>
 

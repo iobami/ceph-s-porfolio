@@ -1,24 +1,42 @@
 <template>
   <div id="mySidenav" class="sidenav">
     <div class="profile">
-      <img src="../assets/images/qui-logo.jpeg" alt="qui logo">&nbsp;
-      <span>Qui</span>
+      <p>Ceph</p>
+      <p>The Great !</p>
     </div>
       <span id="closeButton" class="closeButton" @click="()=>this.$emit('hide-side-nav')"
       style="display: none;">&times;
       </span>
       <hr>
       <div class="nav-button">
-          <div v-for="(routes, routesKey) in navRoute" :key="routesKey">
-              <!--<router-link :to="routes.route">-->
-              <!--</router-link>-->
-              <button @click="goToRoute(routes.route)"
-                      v-ripple class="btn" :id="`nav-button_${routesKey}`">
-                  <span class="nav-route-name" >{{ routes.name }}</span>
-                  <span class="nav-icon">
-                          <i :class="routes.className"></i>
-                  </span>
-              </button>
+          <!--<div v-for="(routes, routesKey) in navRoute" :key="routesKey">-->
+              <!--&lt;!&ndash;<router-link :to="routes.route">&ndash;&gt;-->
+              <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
+              <!--<button @click="goToRoute(routes.route)"-->
+                      <!--v-ripple class="btn" :id="`nav-button_${routesKey}`">-->
+                  <!--<span class="nav-route-name" >{{ routes.name }}</span>-->
+                  <!--<span class="nav-icon">-->
+                          <!--<i :class="routes.className"></i>-->
+                  <!--</span>-->
+              <!--</button>-->
+          <!--</div>-->
+          <div id="nav-span-id" class="nav-container">
+              <span class="nav-span active" id="nav-span_0" @click="goToRoute('/overview', 0)">
+                  Overview
+              </span>
+              <span class="nav-span" v-for="(routes, routesKey) in navRoute"
+                    :id="`nav-span_${routesKey + 1}`"
+                    @click="goToRoute(routes.route, (routesKey + 1))" :key="routesKey">
+                  {{ routes.name }}
+              </span>
+              <br>
+              <br>
+              <a href="https://www.instagram.com/ceph_photography" target="_blank"
+                 class="nav-span mdi mdi-instagram"
+                 style="font-size: 32px; text-decoration: none"></a>
+              <a href="https://www.twitter.com/cephas_ine" target="_blank"
+                      class="nav-span mdi mdi-twitter"
+                      style="font-size: 32px; padding-top: 0; text-decoration: none"></a>
           </div>
       </div>
   </div>
@@ -29,45 +47,42 @@ export default {
   name: 'SideNavigation',
   mounted() {
     /* eslint-env jquery */
-    $('#nav-button_0').addClass('badge-info');
-    $('.nav-button button').click((e) => {
-      $('.nav-button button').removeClass('badge-info');
-      // $(".tab").addClass("active"); // instead of this do the below
-      const currentId = e.currentTarget.id.split('_');
-      $(`#nav-button_${currentId[1]}`).addClass('badge-info');
-    });
     this.getActiveRoute();
   },
   data() {
     return {
       navRoute: [
-        {
-          name: 'Dashboard', route: '/dashboard', className: 'mdi mdi-view-dashboard qui-dashboard',
-        },
-        {
-          name: 'Upload Questions', route: '/file-upload', className: 'mdi mdi-exit-to-app',
-        },
-        {
-          name: 'Create Questions', route: '/create-question', className: 'mdi mdi-border-color',
-        },
         // {
-        //   name: 'Features', route: '/features', className: 'mdi mdi-reorder-vertical',
+        //   name: 'Dashboard', route: '/dashboard',
+        //   className: 'mdi mdi-view-dashboard qui-dashboard',
         // },
+        {
+          name: 'Projects', route: '/projects', className: 'mdi mdi-view-dashboard qui-dashboard',
+        },
+        {
+          name: 'Info', route: '/info', className: 'mdi mdi-view-dashboard qui-dashboard',
+        },
       ],
     };
   },
   methods: {
-    goToRoute(route) {
+    goToRoute(route, routeKey) {
       this.$emit('hide-side-nav');
       if (this.$route.path !== route) {
+        $('.nav-span').removeClass('active');
+        $(`#nav-span_${routeKey}`).addClass('active');
         this.$router.push(route);
       }
     },
     getActiveRoute() {
+      if (this.$route.meta.breadcrumb === undefined) {
+        this.$router.push('/overview');
+        return;
+      }
       this.navRoute.forEach((route, routeKey) => {
         if (this.$route.meta.breadcrumb === route.name) {
-          $('.nav-button button').removeClass('badge-info');
-          $(`#nav-button_${routeKey}`).addClass('badge-info');
+          $('.nav-span').removeClass('active');
+          $(`#nav-span_${routeKey + 1}`).addClass('active');
         }
       });
     },
@@ -84,11 +99,10 @@ export default {
         margin: 12px auto;
     }
   .profile {
-    margin: auto auto 52px auto;
-    text-align: center;
+    text-align: left;
+      margin-top: 15px;
     padding: 10px;
-    font-size: 24px;
-    width: 45%;
+    font-size: 34px;
   }
   .profile img {
     width: 60px;
@@ -96,9 +110,9 @@ export default {
     border-radius: 50%;
     float: left;
   }
-  .profile span {
-    float: right;
-    margin-top: -10px;
+  .profile p {
+      margin-left: 20px;
+      line-height: 18px;
   }
   .sidenav {
     height: 100%;
@@ -107,15 +121,16 @@ export default {
     z-index: 3;
     top: 0;
     left: 0;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))
-      ,url('../../src/assets/images/background-1.jpg');
-      background-size: cover;
-    background-color: #333333;
-    color: #f3f3f3;
+      /*background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))*/
+      /*,url('../../src/assets/images/background-1.jpg');*/
+      /*background-size: cover;*/
+    /*background-color: #333333;*/
+      background-color: #F0F0F0;
+      color: #000000;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 20px;
-    box-shadow: 0 2px 8px 3px #606060;
+    box-shadow: 0 2px 8px 3px #909090;
   }
     .nav-button {
         margin: 42px auto;
@@ -163,10 +178,26 @@ export default {
     *:focus {
         outline: none;
     }
-
-  /*.sidenav a:hover {*/
-    /*color: #f1f1f1;*/
-  /*}*/
+    .nav-container {
+        width: 85%;
+        margin: auto;
+    }
+    .nav-span {
+        display: block;
+        padding: 5px 5px 5px 8px;
+        color: #707070;
+        font-size: 15px;
+        margin-bottom: 2px;
+    }
+    .active, .nav-span:hover {
+        transition-timing-function: ease-in;
+        transition: 0.3s;
+        cursor: pointer;
+        display: block;
+        padding: 5px 5px 5px 8px;
+        color: #6a1b9a;
+        border-left: 2px solid #6a1b9a;
+    }
 
   .sidenav .closeButton {
     position: absolute;

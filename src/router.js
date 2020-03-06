@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import Dashboard from './views/Dashboard.vue';
-import Upload from './views/Questions-Upload.vue';
+import Overview from './views/Overview.vue';
+import Info from './views/My-Info.vue';
 import NewQuestion from './views/Create-Questions.vue';
 import PageNotFound from './views/Page-Not-Found.vue';
 
@@ -12,25 +12,25 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    { path: '/', redirect: '/dashboard' },
+    { path: '/', redirect: '/overview' },
     {
       path: '/',
       component: Home,
       children: [
         {
-          path: '/dashboard',
-          name: 'dashboard',
-          component: Dashboard,
+          path: '/overview',
+          name: 'overview',
+          component: Overview,
           meta: {
-            breadcrumb: 'Dashboard',
+            breadcrumb: 'Overview',
           },
         },
         {
-          path: '/file-upload',
-          name: 'upload',
-          component: Upload,
+          path: '/info',
+          name: 'info',
+          component: Info,
           meta: {
-            breadcrumb: 'Upload Questions',
+            breadcrumb: 'Info',
           },
         },
         {
