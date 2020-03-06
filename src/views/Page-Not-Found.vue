@@ -32,29 +32,6 @@ export default {
     };
   },
   methods: {
-    showPermissions() {
-      this.ifPermission = true;
-    },
-    submitForm() {
-      Object.entries(this.navRoute).forEach((value, key) => {
-        if (document.getElementsByClassName(`roles_${key}`)[0].checked === true) {
-          console.log(document.getElementsByClassName(`roles_${key}`)[0].value);
-          console.log('----------------------------------------------');
-          Object.entries(value[1].className).forEach((permission, permissionkey) => {
-            if (document.getElementsByClassName(`roles_${key}${permissionkey}`)[0].checked === true) {
-              console.log(document.getElementsByClassName(`roles_${key}${permissionkey}`)[0].value);
-            }
-          });
-        }
-      });
-      // if (document.getElementById('roles').checked === true) {
-      //   console.log(document.getElementById('roles').value);
-      // } else {
-      //   alert('nothing hee');
-      // }
-    },
-    checkBox() {
-    },
   },
 };
 </script>

@@ -109,6 +109,8 @@ export default {
     }
     .top-nav {
         margin-left: 250px;
+      display: none;
+
     }
 }
 @media only screen and (min-width: 584px) and (max-width: 991px) {
