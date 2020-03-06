@@ -3,6 +3,11 @@
     <div class="overview-main">
       <template>
 
+          <div class="mobile-view">
+              <br>
+              <br>
+              <br>
+          </div>
           <div class="row-container">
               <div class="column-container">
                   <v-dialog v-model="dialog" width="600px">
@@ -207,6 +212,7 @@ export default {
   name: 'overview',
   mounted() {
     /* eslint-env jquery */
+    this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
     this.onKeyDownListener();
   },
   data() {
@@ -251,6 +257,9 @@ export default {
 </script>
 
 <style scoped>
+    .mobile-view {
+        display: none;
+    }
   .overview-container {
     background-color: #F0F0F0;
     /*height: 100vh;*/
@@ -295,5 +304,13 @@ export default {
       .column-container .right {
           margin-top: 8px;
       }
+      .mobile-view {
+          display: block;
+      }
   }
+    @media only screen and (min-width: 584px) and (max-width: 991px) {
+        .mobile-view {
+            display: block;
+        }
+    }
 </style>

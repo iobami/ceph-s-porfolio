@@ -5,6 +5,10 @@
     class="side-nav"
     v-on:hide-side-nav="hideSideNav"
     />
+    <TopNavigation
+            class="top-nav"
+            v-on:display-side-nav="displaySideNav"
+    />
     <router-view
     id="main"
     />
@@ -13,6 +17,7 @@
 
 <script>
 import SideNavigation from './components/SideNavigation.vue';
+import TopNavigation from './components/TopNavigation.vue';
 
 export default {
   name: 'App',
@@ -27,6 +32,7 @@ export default {
   },
   components: {
     SideNavigation,
+    TopNavigation,
   },
   methods: {
     onResize() {
@@ -34,8 +40,10 @@ export default {
         if ($(window).width() > 990) {
           document.getElementById('mySidenav').style.display = 'block';
           document.getElementById('closeButton').style.display = 'none';
+          document.getElementById('top-navbar').style.display = 'none';
         } else {
           document.getElementById('mySidenav').style.display = 'none';
+          document.getElementById('top-navbar').style.display = 'block';
         }
       });
     },

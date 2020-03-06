@@ -1,5 +1,10 @@
 <template>
   <div class="info-container">
+    <div class="mobile-view">
+      <br>
+      <br>
+      <br>
+    </div>
     <ImageContainer
             v-if="uploadingImage"
             v-bind:items="items"
@@ -104,5 +109,26 @@ export default {
   }
   .my-info {
     margin-top: 22px;
+  }
+  @media screen and (max-width: 600px) {
+    .profile {
+      width: 90%;
+      margin: auto;
+    }
+    .profile-image img {
+      width: 250px;
+      height: 300px;
+    }
+    .my-info {
+      margin: 22px;
+    }
+    .mobile-view {
+      display: block;
+    }
+  }
+  @media only screen and (min-width: 584px) and (max-width: 991px) {
+    .mobile-view {
+      display: block;
+    }
   }
 </style>

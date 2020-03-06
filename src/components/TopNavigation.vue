@@ -1,5 +1,5 @@
 <template>
-    <div class="top-navbar">
+    <div id="top-navbar" class="top-navbar">
         <span class="nav-name">{{ hideHeader }}</span>
         <span @click="()=>this.$emit('display-side-nav')"
               class="showSideNav">&#9776;</span>
@@ -9,12 +9,6 @@
                       :class="`${routes.className} qui-dashboard-logo`">
                 </span>
             </span>
-            <!--<span @click="goToDashboard()"-->
-                  <!--class="mdi mdi-border-color qui-dashboard-logo"></span>-->
-            <!--<span @click="goToDashboard()"-->
-                  <!--class="mdi mdi-exit-to-app qui-dashboard-logo"></span>-->
-            <!--<span @click="goToDashboard()"-->
-                  <!--class="mdi mdi-view-dashboard qui-dashboard-logo"></span>-->
         </div>
     </div>
 </template>
@@ -22,7 +16,6 @@
 <script>
 export default {
   mounted() {
-    // this.navName = this.$store.commit('setHideHeader', '');
     /* eslint-env jquery */
   },
   data() {
