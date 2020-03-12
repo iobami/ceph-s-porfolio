@@ -10,194 +10,26 @@
           </div>
           <div class="row-container">
               <div class="column-container">
-                  <v-dialog v-model="dialog" width="600px">
-                      <template v-slot:activator="{ on }">
-                          <v-card fluid v-on="on" class="overlay-fade-custom">
-                              <v-img
-                                      src="../../src/assets/images/nastuh.jpg"
-                                      lazy-src="../../src/assets/images/nastuh.jpg"
-                                      aspect-ratio="1"
-                                      class="grey lighten-2"
-                              >
-                                  <template v-slot:placeholder>
-                                      <v-row
-                                              class="fill-height ma-0"
-                                              align="center"
-                                              justify="center"
-                                      >
-                                          <v-progress-circular indeterminate color="grey lighten-5">
-                                          </v-progress-circular>
-                                      </v-row>
-                                  </template>
-                              </v-img>
 
-                              <v-fade-transition>
-                                  <v-overlay
-                                          absolute
-                                          color="#036358"
-                                          class="show-overlay"
-                                  >
-                                      <v-text>See more info</v-text>
-                                  </v-overlay>
-                              </v-fade-transition>
+                  <ImageContainer
+                          v-for="(item,itemKey) in uploadsArray[0]"
+                          :key="itemKey"
+                          v-bind:imageSource="item"
+                          v-bind:items="uploadsArray[0]"
+                  />
 
-                          </v-card>
-                      </template>
-                      <v-carousel hide-delimiters
-                                  :progress="progressBar"
-                                  progress-color="#6a1b9a"
-                                  show-arrows-on-hover
-                      >
-                          <v-carousel-item
-                                  v-for="(item,i) in items"
-                                  :key="i"
-                                  :src="item.src"
-                          ></v-carousel-item>
-                      </v-carousel>
-                  </v-dialog>
-
-                  <v-dialog v-model="dialog" width="600px">
-                      <template v-slot:activator="{ on }">
-                          <v-card fluid v-on="on" class="overlay-fade-custom">
-                              <v-img
-                                      src="../../src/assets/images/audi-bright-car.jpg"
-                                      lazy-src="../../src/assets/images/audi-bright-car.jpg"
-                                      aspect-ratio="1"
-                                      class="grey lighten-2"
-                              >
-                                  <template v-slot:placeholder>
-                                      <v-row
-                                              class="fill-height ma-0"
-                                              align="center"
-                                              justify="center"
-                                      >
-                                          <v-progress-circular indeterminate color="grey lighten-5">
-                                          </v-progress-circular>
-                                      </v-row>
-                                  </template>
-                              </v-img>
-
-                              <v-fade-transition>
-                                  <v-overlay
-                                          absolute
-                                          color="#036358"
-                                          class="show-overlay"
-                                  >
-                                      <v-text>See more info</v-text>
-                                  </v-overlay>
-                              </v-fade-transition>
-
-                          </v-card>
-                      </template>
-                      <v-carousel
-                              hide-delimiters
-                              :progress="progressBar"
-                              progress-color="#6a1b9a"
-                              show-arrows-on-hover
-                      >
-                          <v-carousel-item
-                                  v-for="(item,i) in items"
-                                  :key="i"
-                                  :src="item.src"
-                          ></v-carousel-item>
-                      </v-carousel>
-                  </v-dialog>
               </div>
 
               <!--right side galleria-->
               <div class="column-container">
-                  <v-dialog v-model="dialog" width="600px">
-                      <template v-slot:activator="{ on }">
-                          <v-card fluid v-on="on" class="overlay-fade-custom">
-                              <v-img
-                                      src="../../src/assets/images/background-1.jpg"
-                                      lazy-src="../../src/assets/images/background-1.jpg"
-                                      aspect-ratio="1"
-                                      class="grey lighten-2"
-                                      style="width:100%"
-                              >
-                                  <template v-slot:placeholder>
-                                      <v-row
-                                              class="fill-height ma-0"
-                                              align="center"
-                                              justify="center"
-                                      >
-                                          <v-progress-circular indeterminate color="grey lighten-5">
-                                          </v-progress-circular>
-                                      </v-row>
-                                  </template>
-                              </v-img>
 
-                              <v-fade-transition>
-                                  <v-overlay
-                                          absolute
-                                          color="#036358"
-                                          class="show-overlay"
-                                  >
-                                      <v-text>See more info</v-text>
-                                  </v-overlay>
-                              </v-fade-transition>
+                  <ImageContainer
+                          v-for="(item,itemKey) in uploadsArray[1]"
+                          :key="itemKey"
+                          v-bind:imageSource="item"
+                          v-bind:items="uploadsArray[1]"
+                  />
 
-                          </v-card>
-                      </template>
-                      <v-carousel hide-delimiters
-                                  :progress="progressBar"
-                                  progress-color="#6a1b9a"
-                                  show-arrows-on-hover>
-                          <v-carousel-item
-                                  v-for="(item,i) in items"
-                                  :key="i"
-                                  :src="item.src"
-                          ></v-carousel-item>
-                      </v-carousel>
-                  </v-dialog>
-
-                  <v-dialog v-model="dialog" width="600px">
-                      <template v-slot:activator="{ on }">
-                          <v-card fluid v-on="on" class="overlay-fade-custom">
-                              <v-img
-                                      src="../../src/assets/images/roman.jpg"
-                                      lazy-src="../../src/assets/images/roman.jpg"
-                                      aspect-ratio="1"
-                                      class="grey lighten-2"
-                                      style="width:100%"
-                              >
-                                  <template v-slot:placeholder>
-                                      <v-row
-                                              class="fill-height ma-0"
-                                              align="center"
-                                              justify="center"
-                                      >
-                                          <v-progress-circular indeterminate color="grey lighten-5">
-                                          </v-progress-circular>
-                                      </v-row>
-                                  </template>
-                              </v-img>
-
-                              <v-fade-transition>
-                                  <v-overlay
-                                          absolute
-                                          color="#036358"
-                                          class="show-overlay"
-                                  >
-                                      <v-text>See more info</v-text>
-                                  </v-overlay>
-                              </v-fade-transition>
-
-                          </v-card>
-                      </template>
-                      <v-carousel hide-delimiters
-                                  :progress="progressBar"
-                                  progress-color="#6a1b9a"
-                                  show-arrows-on-hover
-                      >
-                          <v-carousel-item
-                                  v-for="(item,i) in items"
-                                  :key="i"
-                                  :src="item.src"
-                          ></v-carousel-item>
-                      </v-carousel>
-                  </v-dialog>
               </div>
           </div>
 
@@ -207,6 +39,10 @@
 </template>
 
 <script>
+import ImageContainer from '../components/ImageContainer.vue';
+// import uploads from './getUploads';
+import arrayOfImages from './getUploads';
+
 
 export default {
   name: 'overview',
@@ -221,6 +57,10 @@ export default {
       hover: false,
       dialog: false,
       progressBar: true,
+      imageCara: '../assets/images/Upload/DSC00981.jpg',
+      // uploadsArray: uploads.keys(),
+      uploadsArray: arrayOfImages,
+      imgSrc: '',
       items: [
         {
           src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
@@ -236,6 +76,9 @@ export default {
         },
       ],
     };
+  },
+  components: {
+    ImageContainer,
   },
   methods: {
     onKeyDownListener() {

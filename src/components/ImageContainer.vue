@@ -1,14 +1,14 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform" id="image-container">
 
     <v-dialog v-model="dialog" width="600px">
         <template v-slot:activator="{ on }">
             <v-card fluid v-on="on" class="overlay-fade-custom">
                 <v-img
-                        src="../../src/assets/images/roman.jpg"
-                        lazy-src="../../src/assets/images/roman.jpg"
-                        aspect-ratio="1"
+                        :src="imageSource"
+                        :lazy-src="imageSource"
                         class="grey lighten-2"
                         style="width:100%"
+                        contain
                 >
                     <template v-slot:placeholder>
                         <v-row
@@ -42,7 +42,7 @@
             <v-carousel-item
                     v-for="(item,i) in items"
                     :key="i"
-                    :src="item.src"
+                    :src="item"
             ></v-carousel-item>
         </v-carousel>
     </v-dialog>
@@ -65,7 +65,7 @@ export default {
     };
   },
   props: [
-    'items',
+    'items', 'imageSource',
   ],
   methods: {
     onKeyDownListener() {
@@ -85,3 +85,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+    .show-overlay {
+        visibility: hidden;
+    }
+    .overlay-fade-custom:hover .show-overlay {
+        transition-timing-function: ease-in-out;
+        transition-delay: 2ms;
+        transition: visible 4s;
+        visibility: visible;
+    }
+</style>

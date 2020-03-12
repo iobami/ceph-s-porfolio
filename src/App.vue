@@ -51,17 +51,12 @@ export default {
       // document.getElementById('mySidenav').style.display = 'block';
       $('#mySidenav').slideToggle();
       document.getElementById('closeButton').style.display = 'block';
-      // document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
     },
     hideSideNav() {
-      // if ($('#statusBar').is(':visible')) {
-      //   $('.form_login').css('margin-top', '-80px');
-      // }
       if ($(window).width() < 990) {
         // document.getElementById('mySidenav').style.display = 'none';
         $('#mySidenav').slideToggle();
       }
-      // document.body.style.backgroundColor = 'white';
     },
   },
 };
