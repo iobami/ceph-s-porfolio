@@ -8,29 +8,49 @@
               <br>
               <br>
           </div>
-          <div class="row-container">
+          <div class="row-container" v-if="allImages.length">
               <div class="column-container">
 
-                  <ImageContainer
-                          v-for="(item,itemKey) in uploadsArray[0]"
-                          :key="itemKey"
-                          v-bind:imageSource="item"
-                          v-bind:items="uploadsArray[0]"
-                  />
+                  <div v-if="allImages.length">
+                      <ImageContainer
+                              v-for="(item,itemKey) in uploadsArray[0]"
+                              :key="itemKey"
+                              v-bind:imageSource="item"
+                              v-bind:items="uploadsArray[0][itemKey]"
+                      />
+                  </div>
 
               </div>
 
               <!--right side galleria-->
               <div class="column-container">
 
-                  <ImageContainer
-                          v-for="(item,itemKey) in uploadsArray[1]"
-                          :key="itemKey"
-                          v-bind:imageSource="item"
-                          v-bind:items="uploadsArray[1]"
-                  />
+                  <div v-if="allImages.length">
+                      <ImageContainer
+                              v-for="(item1,itemKey1) in uploadsArray[1]"
+                              :key="itemKey1"
+                              v-bind:imageSource="item1"
+                              v-bind:items="uploadsArray[1][itemKey1]"
+                      />
+                  </div>
 
               </div>
+          </div>
+
+          <div v-else>
+              <v-row
+                      align="center"
+                      justify="center"
+                      class="grey lighten-5"
+                      style="min-height: 600px;"
+              >
+                  <v-progress-circular
+                          :size="150"
+                          :width="5"
+                          indeterminate
+                          color="purple"
+                  ></v-progress-circular>
+              </v-row>
           </div>
 
       </template>
@@ -39,9 +59,10 @@
 </template>
 
 <script>
+import axios from 'axios';
 import ImageContainer from '../components/ImageContainer.vue';
 // import uploads from './getUploads';
-import arrayOfImages from './getUploads';
+// import arrayOfImages from './getUploads';
 
 
 export default {
@@ -49,6 +70,7 @@ export default {
   mounted() {
     /* eslint-env jquery */
     this.$store.commit('setHideHeader', this.$route.meta.breadcrumb);
+    this.getAllImages();
     this.onKeyDownListener();
   },
   data() {
@@ -58,8 +80,9 @@ export default {
       dialog: false,
       progressBar: true,
       imageCara: '../assets/images/Upload/DSC00981.jpg',
-      // uploadsArray: uploads.keys(),
-      uploadsArray: arrayOfImages,
+      // uploadsArray: arrayOfImages,
+      uploadsArray: [],
+      allImages: [],
       imgSrc: '',
       items: [
         {
@@ -75,12 +98,36 @@ export default {
           src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
         },
       ],
+      images: [
+        'https://i.ibb.co/F6KSQJS/ceph-photography-20200307-075213-0.jpg',
+        'https://i.ibb.co/ZX2DGt6/ceph-photography-20200307-075135-0.jpg',
+        'https://i.ibb.co/2W7Kpwk/Cara-2.jpg',
+        'https://i.ibb.co/bg5K29c/Cara-1.jpg',
+        'https://i.ibb.co/JRY8G5N/cara-4.jpg',
+        'https://i.ibb.co/bmvQsMs/cara-3.jpg',
+      ],
     };
   },
   components: {
     ImageContainer,
   },
   methods: {
+    getAllImages() {
+      axios({
+        method: 'GET',
+        url: process.env.VUE_APP_ALL_IMAGES,
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+      }).then(({ data }) => {
+        console.log(data);
+        this.allImages = data;
+        this.uploadsArray[1] = this.allImages.splice(Math.ceil(data.length / 2));
+        this.uploadsArray[0] = this.allImages;
+      }).catch(() => {
+      });
+    },
     onKeyDownListener() {
       document.onkeydown = function checkKeyCode(e) {
         switch (e.keyCode) {
@@ -138,6 +185,10 @@ export default {
       vertical-align: middle;
       width: 100%;
   }
+  .v-progress-circular {
+      margin: 1rem;
+  }
+
   @media screen and (max-width: 600px) {
       .column-container {
           -ms-flex: 100%;

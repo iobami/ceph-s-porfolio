@@ -1,6 +1,7 @@
 <template>
   <div id="mySidenav" class="sidenav">
     <div class="profile">
+      <!--<img src="../assets/images/Upload/logo.png" alt="ceph's logo">-->
       <p>Ceph</p>
       <p>The Great !</p>
     </div>

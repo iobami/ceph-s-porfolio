@@ -4,8 +4,8 @@
         <template v-slot:activator="{ on }">
             <v-card fluid v-on="on" class="overlay-fade-custom">
                 <v-img
-                        :src="imageSource"
-                        :lazy-src="imageSource"
+                        :src="imageSource.imageUrl"
+                        :lazy-src="imageSource.imageUrl"
                         class="grey lighten-2"
                         style="width:100%"
                         contain
@@ -38,11 +38,17 @@
                     :progress="progressBar"
                     progress-color="#6a1b9a"
                     show-arrows-on-hover
+                    :show-arrows="!progressBar"
+                    active-class
         >
+            <!--<v-carousel-item-->
+                    <!--v-for="(item,i) in items"-->
+                    <!--:key="i"-->
+                    <!--:src="item.imageUrl"-->
+            <!--&gt;</v-carousel-item>-->
+
             <v-carousel-item
-                    v-for="(item,i) in items"
-                    :key="i"
-                    :src="item"
+                    :src="items.imageUrl"
             ></v-carousel-item>
         </v-carousel>
     </v-dialog>

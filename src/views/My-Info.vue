@@ -25,12 +25,17 @@
             >
               <div class="my-info">
                 <h1>Ceph</h1>
-                <hr>
-                <br>
-                Address
                 <br>
                 <br>
-                About
+                <h4>Address</h4>
+                <p style="margin-left: 12px">University of Ibadan</p>
+                <v-divider></v-divider>
+                <h4>About</h4>
+                <p style="margin-left: 12px; text-align: justify; font-size: 14px">
+                  Cephas is a photographer that has a vision to capture moments in the best
+                  way possible so that you can have a feel of re-living these moments whenever
+                  you view these pictures.
+                </p>
               </div>
             </v-col>
             <v-col
