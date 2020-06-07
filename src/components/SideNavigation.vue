@@ -123,8 +123,9 @@ export default {
     top: 0;
     left: 0;
       /*background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))*/
-      /*,url('../../src/assets/images/background-1.jpg');*/
-      /*background-size: cover;*/
+      /*,url('../../src/assets/images/sidenav-img2.jpg');*/
+      background-image: url('../../src/assets/images/sidenav-img2.jpg');
+      background-size: cover;
     /*background-color: #333333;*/
       background-color: #F0F0F0;
       color: #000000;

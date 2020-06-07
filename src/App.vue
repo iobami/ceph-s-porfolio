@@ -37,7 +37,7 @@ export default {
   methods: {
     onResize() {
       $(window).on('resize', () => {
-        if ($(window).width() > 990) {
+        if ($(window).width() > 993) {
           document.getElementById('mySidenav').style.display = 'block';
           document.getElementById('closeButton').style.display = 'none';
           document.getElementById('top-navbar').style.display = 'none';
@@ -53,7 +53,7 @@ export default {
       document.getElementById('closeButton').style.display = 'block';
     },
     hideSideNav() {
-      if ($(window).width() < 990) {
+      if ($(window).width() < 1000) {
         // document.getElementById('mySidenav').style.display = 'none';
         $('#mySidenav').slideToggle();
       }
@@ -83,19 +83,19 @@ export default {
   /*width: 250px;*/
 /*}*/
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D3D3D3;
+  background: grey;
   height: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C8C8C8;
+  background: darkgrey;
 }
-@media only screen and (min-width: 991px) {
+@media only screen and (min-width: 992px) {
     #main {
         margin-left: 250px;
     }

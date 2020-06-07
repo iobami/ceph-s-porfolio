@@ -2,7 +2,7 @@
 node_modules
 MaterialDesign
 fontawesome-5.3.1
-Upload
+Upload/
 
 # local env files
 .env
@@ -15,7 +15,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Editor directories and files
-.idea
+.idea/
 .vscode
 *.suo
 *.ntvs*

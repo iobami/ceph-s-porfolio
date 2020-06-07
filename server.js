@@ -9,7 +9,7 @@ const serveStatic = require('serve-static');
 const app = express();
 
 app.use(history({
-    index: '/',
+  index: '/',
 }));
 
 app.use(serveStatic(`${__dirname}/dist`));
