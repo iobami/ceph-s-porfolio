@@ -57,7 +57,7 @@
                 <h4 class="card-title" style="color: #202020">About Me</h4>
                 <hr>
                 <p class="card-text">
-                  Cephas is a photographer that has a vision to capture moments in the best
+                  I am a photographer that has a vision to capture moments in the best
                   way possible so that you can have a feel of re-living these moments whenever
                   you view these pictures.
                 </p>
