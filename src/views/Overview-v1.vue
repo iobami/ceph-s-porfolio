@@ -12,22 +12,22 @@
             <div class="row">
                 <div class="column">
                     <div v-for="(image, imageKey) in imageColumn1" :key="imageKey">
-                        <img :id="image._id" :src="image.imageUrl" alt="" style="width:100%">
+                        <img :id="image._id" v-lazy="image.imageUrl" alt="" style="width:100%">
                     </div>
                 </div>
                 <div class="column">
                     <div v-for="(image2, imageKey2) in imageColumn2" :key="imageKey2">
-                        <img :id="image2._id" :src="image2.imageUrl" alt="" style="width:100%">
+                        <img :id="image2._id" v-lazy="image2.imageUrl" alt="" style="width:100%">
                     </div>
                 </div>
                 <div class="column">
                     <div v-for="(image3, imageKey3) in imageColumn3" :key="imageKey3">
-                        <img :id="image3._id" :src="image3.imageUrl" alt="" style="width:100%">
+                        <img :id="image3._id" v-lazy="image3.imageUrl" alt="" style="width:100%">
                     </div>
                 </div>
                 <div class="column">
                     <div v-for="(image4, imageKey4) in imageColumn4" :key="imageKey4">
-                        <img :id="image4._id" :src="image4.imageUrl" alt="" style="width:100%">
+                        <img :id="image4._id" v-lazy="image4.imageUrl" alt="" style="width:100%">
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@ export default {
     },
     splitImagesIntoFourColumns(data) {
       let index = 0;
-      for (index = 0; index < data.length; index += 1) {
+      for (index = 0; index < (data.length - 85); index += 1) {
         this.imageColumn1.push(data[index]);
         index += 1;
 

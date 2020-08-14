@@ -119,9 +119,10 @@ export default {
   .profile-image {
   }
   .profile-image img {
-    width: 270px;
-    height: 270px;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
+    object-fit: cover;
   }
   .card-profile-height {
     min-height: 480px;

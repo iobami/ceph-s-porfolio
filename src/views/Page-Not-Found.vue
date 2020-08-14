@@ -5,7 +5,7 @@
         <br>
         <br>
         <br>
-        <h1 style="text-align: center">Opps! Coming through soon</h1>
+        <h1 style="text-align: center">Oops! Coming through soon</h1>
     </div>
 </template>
 
