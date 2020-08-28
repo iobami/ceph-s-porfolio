@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+dist
 MaterialDesign
 fontawesome-5.3.1
 Upload/

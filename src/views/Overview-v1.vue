@@ -91,7 +91,7 @@ export default {
     },
     splitImagesIntoFourColumns(data) {
       let index = 0;
-      for (index = 0; index < (data.length - 85); index += 1) {
+      for (index = 0; index < (data.length - 65); index += 1) {
         this.imageColumn1.push(data[index]);
         index += 1;
 
@@ -106,6 +106,8 @@ export default {
         if (index === data.length) break;
         this.imageColumn4.push(data[index]);
       }
+      this.imageColumn3.pop();
+      this.imageColumn4.pop();
     },
   },
 };

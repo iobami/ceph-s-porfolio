@@ -46,8 +46,13 @@
           </div>
           <div class="col-sm-6">
             <div class="card">
-              <img class="card-img-top" src="../../src/assets/images/ga-ceph.jpg"
-                   alt="Card image cap" height="180">
+              <img
+                class="card-img-top"
+                style="object-fit: cover"
+                src="../../src/assets/images/ga-ceph.jpg"
+                alt="Card image cap"
+                height="180"
+              >
               <div class="card-body">
                 <h4 class="card-title" style="color: #202020">Address</h4>
                 <hr>
