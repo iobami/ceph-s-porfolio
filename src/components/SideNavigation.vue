@@ -64,6 +64,7 @@ export default {
           name: 'Info', route: '/info', className: 'mdi mdi-view-dashboard qui-dashboard',
         },
       ],
+      bgImage: 'https://res.cloudinary.com/cephasine/image/upload/v1601817858/test/sidenav-img2_hotwq7.jpg',
     };
   },
   methods: {
@@ -124,7 +125,7 @@ export default {
     left: 0;
       /*background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))*/
       /*,url('../../src/assets/images/sidenav-img2.jpg');*/
-      background-image: url('../../src/assets/images/sidenav-img2.jpg');
+      background-image: url('https://res.cloudinary.com/cephasine/image/upload/v1601817858/test/sidenav-img2_hotwq7.jpg');
       background-size: cover;
     /*background-color: #333333;*/
       background-color: #F0F0F0;

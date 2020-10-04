@@ -10,6 +10,10 @@ export default {
         type: 'success', title, text,
       });
     },
+    resizeImage(url, size) {
+      const [baseUrl, imagePath] = url.split('upload');
+      return `${baseUrl}${size ? `upload/${size}` : 'upload'}${imagePath}`;
+    },
   },
   computed: {
     hideHeader: function isBusy() {

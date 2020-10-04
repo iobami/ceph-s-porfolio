@@ -49,7 +49,7 @@
               <img
                 class="card-img-top"
                 style="object-fit: cover"
-                src="../../src/assets/images/ga-ceph.jpg"
+                :src="resizeImage('https://res.cloudinary.com/cephasine/image/upload/v1601817918/test/ga-ceph_owrir5.jpg', 'h_250,q_auto')"
                 alt="Card image cap"
                 height="180"
               >
