@@ -13,7 +13,7 @@
           <div v-for="(image, imageKey) in imageColumn1" :key="imageKey">
             <img
               :id="image._id"
-              v-lazy="resizeImage(image.imageUrl, 'h_400,,q_auto')"
+              v-lazy="resizeImage(image.imageUrl, 'h_700,,q_auto')"
               alt=""
               style="width: 100%"
             />
@@ -23,7 +23,7 @@
           <div v-for="(image2, imageKey2) in imageColumn2" :key="imageKey2">
             <img
               :id="image2._id"
-              v-lazy="resizeImage(image2.imageUrl, 'h_400,q_auto')"
+              v-lazy="resizeImage(image2.imageUrl, 'h_700,q_auto')"
               alt=""
               style="width: 100%"
             />
@@ -33,7 +33,7 @@
           <div v-for="(image3, imageKey3) in imageColumn3" :key="imageKey3">
             <img
               :id="image3._id"
-              v-lazy="resizeImage(image3.imageUrl, 'h_400,q_auto')"
+              v-lazy="resizeImage(image3.imageUrl, 'h_700,q_auto')"
               alt=""
               style="width: 100%"
             />
@@ -43,7 +43,7 @@
           <div v-for="(image4, imageKey4) in imageColumn4" :key="imageKey4">
             <img
               :id="image4._id"
-              v-lazy="resizeImage(image4.imageUrl, 'h_400,q_auto')"
+              v-lazy="resizeImage(image4.imageUrl, 'h_700,q_auto')"
               alt=""
               style="width: 100%"
             />
